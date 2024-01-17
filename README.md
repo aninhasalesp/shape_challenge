@@ -12,19 +12,19 @@ The FPSO vessel contains some equipment and each equipment have multiple sensors
 ## Como executar
 ### Clone o projeto:
 - git clone https://github.com/aninhasalesp/shape_challenge.git
-- `cd shape_challenge` para entrar na pasta do projeto
+- `cd shape_challenge` to enter the project folder
 
 ### Com docker:
 1. [Instalar o docker](https://docs.docker.com/get-docker/)
 2. ``
-3. Para imprimir o resultado na tela: 
+3. To print result on the screen:
     ```
     adicionar algo aqui
     
     ```
 
 ### Com poetry/virtualenv:
-1. Instalar o [poetry](https://python-poetry.org/docs/#installation): `pip install poetry`
+1. Install [poetry](https://python-poetry.org/docs/#installation): `pip install poetry`
 2. `poetry shell`
 3. `poetry install`
 4. Para ver a documentação: `python  --help`
