@@ -24,17 +24,11 @@ The project provides three essential files:
 
 ### Docker:
 1. [Instalar o docker](https://docs.docker.com/get-docker/)
-2. ``
-3. To print result on the screen:
-    ```
-    adicionar algo aqui
-    
-    ```
+2. FALTA COISA AQUI
 
 ### Poetry/Virtualenv:
 1. Install [poetry](https://python-poetry.org/docs/#installation): `pip install poetry`
 2. `poetry shell`
 3. `poetry install`
-4. Para ver a documentação: `python  --help`
-5. Exemplos: 
+4. FALTA COISA AQUI
     
