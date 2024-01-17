@@ -4,7 +4,7 @@ The FPSO vessel contains some equipment and each equipment have multiple sensors
 
 The project provides three essential files:
 
-`equipment_failure_sensors.txt`: The log file with sensor data when a failure occurs
+`equipment_failure_sensors.rar`: The log file with sensor data when a failure occurs
 
 `equipment_sensors.csv`: A file with the relationships between sensors and equipment
 
