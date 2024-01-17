@@ -1,6 +1,14 @@
-# shapeChallenge
+# Project description
 
 The FPSO vessel contains some equipment and each equipment have multiple sensors. Every time a failure happens, we get all the sensors data from the failed equipment, and we store this information in a log file (the time is in GMT time zone).
+
+The project provides three essential files:
+
+`equipment_failure_sensors.txt`: The log file with sensor data when a failure occurs
+
+`equipment_sensors.csv`: A file with the relationships between sensors and equipment
+
+`equipment.json`: A file containing data about equipment.
 
 ## Challenge
 
