@@ -9,12 +9,12 @@ The FPSO vessel contains some equipment and each equipment have multiple sensors
 - Manipulate file with 5 million items
 - Create a method that receives data from files and inserts into database
 
-## Como executar
-### Clone o projeto:
+## Execution instructions
+### Clone this repository:
 - git clone https://github.com/aninhasalesp/shape_challenge.git
 - `cd shape_challenge` to enter the project folder
 
-### Com docker:
+### Docker:
 1. [Instalar o docker](https://docs.docker.com/get-docker/)
 2. ``
 3. To print result on the screen:
@@ -23,7 +23,7 @@ The FPSO vessel contains some equipment and each equipment have multiple sensors
     
     ```
 
-### Com poetry/virtualenv:
+### Poetry/Virtualenv:
 1. Install [poetry](https://python-poetry.org/docs/#installation): `pip install poetry`
 2. `poetry shell`
 3. `poetry install`
