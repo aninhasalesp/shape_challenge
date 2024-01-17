@@ -89,9 +89,9 @@ class EquipmentLog(Base):
 
     @classmethod
     def load_data(cls, engine):
-        # return cls.load_from_txt(
-        #     f'resource/{cls.__tablename__}.txt', engine, bulk=True
-        # )
+        return cls.load_from_txt(
+            f'resource/{cls.__tablename__}.txt', engine, bulk=True
+        )
         return
 
     @staticmethod
