@@ -77,9 +77,6 @@ class EquipmentSensor(Base):
 
 class EquipmentLog(Base):
     __tablename__ = "equipment_failure_sensors"
-    # __table_args__ = (
-    #     UniqueConstraint("timestamp", "sensor_id"),
-    # )
 
     id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     timestamp = Column(DateTime)
@@ -92,7 +89,10 @@ class EquipmentLog(Base):
 
     @classmethod
     def load_data(cls, engine):
-        return cls.load_from_txt(f'resource/{cls.__tablename__}.txt', engine, bulk=True)
+        # return cls.load_from_txt(
+        #     f'resource/{cls.__tablename__}.txt', engine, bulk=True
+        # )
+        return
 
     @staticmethod
     def bulk_create(equipment_logs, engine):
