@@ -1,9 +1,9 @@
-from sqlalchemy import create_engine, inspect
 from decouple import config
-from models import Equipment, EquipmentSensor, EquipmentLog
+from sqlalchemy import create_engine, inspect
 
+from models import Equipment, EquipmentLog, EquipmentSensor
 
-DATABASE_URI = config("DATABASE_URI", default='sqlite:///database.sqlite')
+DATABASE_URI = config("DATABASE_URI", default="sqlite:///database.sqlite")
 
 
 def database_check(engine):

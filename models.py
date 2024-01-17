@@ -1,13 +1,13 @@
-import re
-import json
 import csv
+import json
 import logging
-
+import re
 from datetime import datetime
-from sqlalchemy import Column, Integer, Float, String, DateTime
-from sqlalchemy import Column, Integer, ForeignKey, UniqueConstraint
-from sqlalchemy.orm import declarative_base, relationship, Session
+
+from sqlalchemy import (Column, DateTime, Float, ForeignKey, Integer, String,
+                        UniqueConstraint)
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session, declarative_base, relationship
 
 Base = declarative_base()
 
@@ -22,7 +22,7 @@ class Equipment(Base):
 
     @classmethod
     def load_data(cls, engine):
-        return cls.load_from_json(f'resource/{cls.__tablename__}.json', engine)
+        return cls.load_from_json(f"resource/{cls.__tablename__}.json", engine)
 
     @staticmethod
     def bulk_create(equipment_list, engine):
@@ -34,18 +34,13 @@ class Equipment(Base):
     def load_from_json(cls, path_json, engine):
         with open(path_json, "r") as f:
             equipment_list = json.load(f)
-        cls.bulk_create(
-            [cls(**equipment) for equipment in equipment_list],
-            engine
-        )
+        cls.bulk_create([cls(**equipment) for equipment in equipment_list], engine)
         return equipment_list
 
 
 class EquipmentSensor(Base):
     __tablename__ = "equipment_sensors"
-    __table_args__ = (
-        UniqueConstraint("sensor_id", "equipment_id"),
-    )
+    __table_args__ = (UniqueConstraint("sensor_id", "equipment_id"),)
 
     sensor_id = Column(Integer, unique=True, primary_key=True)
     equipment_id = Column(Integer, ForeignKey("equipment.equipment_id"))
@@ -55,7 +50,7 @@ class EquipmentSensor(Base):
 
     @classmethod
     def load_data(cls, engine):
-        return cls.load_from_csv(f'resource/{cls.__tablename__}.csv', engine)
+        return cls.load_from_csv(f"resource/{cls.__tablename__}.csv", engine)
 
     @staticmethod
     def bulk_create(reader, engine):
@@ -65,13 +60,10 @@ class EquipmentSensor(Base):
 
     @classmethod
     def load_from_csv(cls, path_csv, engine):
-        with open(path_csv, newline='') as arquivo_csv:
+        with open(path_csv, newline="") as arquivo_csv:
             sensors_list = list(csv.DictReader(arquivo_csv))
 
-        cls.bulk_create(
-            [cls(**sensor) for sensor in sensors_list],
-            engine
-        )
+        cls.bulk_create([cls(**sensor) for sensor in sensors_list], engine)
         return sensors_list
 
 
@@ -89,9 +81,7 @@ class EquipmentLog(Base):
 
     @classmethod
     def load_data(cls, engine):
-        return cls.load_from_txt(
-            f'resource/{cls.__tablename__}.txt', engine, bulk=True
-        )
+        return cls.load_from_txt(f"resource/{cls.__tablename__}.txt", engine, bulk=True)
         return
 
     @staticmethod
@@ -111,14 +101,14 @@ class EquipmentLog(Base):
     @classmethod
     def load_from_txt(cls, path_txt, engine, bulk=True):
         if bulk:
-            with open(path_txt, 'r') as arquivo:
+            with open(path_txt, "r") as arquivo:
                 return cls.bulk_create(
                     [cls(**cls.parse_log_line(linha)) for linha in arquivo.readlines()],
-                    engine
+                    engine,
                 )
 
         equipment_logs = []
-        with open(path_txt, 'r') as log_file:
+        with open(path_txt, "r") as log_file:
             for log_line in log_file:
                 try:
                     equipment_logs.append(
@@ -136,9 +126,9 @@ class EquipmentLog(Base):
                 r"\s+\(temperature\s+(-?[\d.]+|\berr\b),"
                 r"\s+vibration\s+(-?[\d.]+|\berr\b)\)"
             ),
-            linha
+            linha,
         )
-        
+
         if match:
             timestamp, status, sensor_id, temperature, vibration = match.groups()
 
@@ -148,10 +138,10 @@ class EquipmentLog(Base):
                 parsed_timestamp = datetime.strptime(timestamp, "%Y/%m/%d")
 
             return {
-                'timestamp': parsed_timestamp,
-                'status': status,
-                'sensor_id': int(sensor_id),
-                'temperature': None if temperature == 'err' else float(temperature),
-                'vibration': None if vibration == 'err' else float(vibration)
+                "timestamp": parsed_timestamp,
+                "status": status,
+                "sensor_id": int(sensor_id),
+                "temperature": None if temperature == "err" else float(temperature),
+                "vibration": None if vibration == "err" else float(vibration),
             }
         raise Exception("Log parse error")
